@@ -1,20 +1,9 @@
 package com.android.celltechmobileservicesapp.actions;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.accounts.AccountManagerCallback;
-import android.accounts.AccountManagerFuture;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 
 import com.android.celltechmobileservicesapp.MainActivity;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FactoryResetAction {
 
