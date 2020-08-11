@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CMS WIPE</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="key_HMG5">HMG5</string>
+    <string name="value_HMG5">British HMG Infosec Standard 5 - Baseline</string>
+    <string name="key_NIST">NIST</string>
+    <string name="value_NIST">National Institute of Standards and Technology – NIST 800–88</string>
+    <string name="key_DOD">DOD</string>
+    <string name="value_DOD">Standard of the American Department of Defense (DoD 5220.22 M)</string>
+    <string name="key_NCSC">NCSC</string>
+    <string name="value_NCSC">The National Computer Security Center NCSC-TG-025</string>
+    <string name="key_BSI">BSI</string>
+    <string name="value_BSI">Standard of the Federal Office of Information Security (BSI-VSITR)</string>
+    <string name="key_Rand">Rand</string>
+    <string name="value_Rand">Aperiodic random overwrite/Random</string>
+
+    <string name="free_space">Free Space :  </string>
+    <string name="mb">MB</string>
+    <string name="filling">Filling empty space</string>
+    <string name="cleaning">Cleaning the filled data</string>
+    <string name="waiting">Waiting to start</string>
+
+    <string name="device_admin">Activare drepturi administrator pentru aplicatie</string>
+
+
+    <string-array name="codes">
+        <item>factory_reset</item>
+        <item>wipe_data</item>
+    </string-array>
+    <string-array name="names">
+        <item>Factory reset</item>
+        <item>Wipe data</item>
+    </string-array>
+
+</resources>
