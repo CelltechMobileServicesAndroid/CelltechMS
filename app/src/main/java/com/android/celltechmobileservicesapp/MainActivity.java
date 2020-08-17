@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity
             TestFragment fragmentObject = (TestFragment) getSupportFragmentManager().findFragmentByTag("TEST");
             fragmentObject.onActivityResult(requestCode, resultCode, data);
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        //super.onActivityResult(requestCode, resultCode, data);
 
     }
 

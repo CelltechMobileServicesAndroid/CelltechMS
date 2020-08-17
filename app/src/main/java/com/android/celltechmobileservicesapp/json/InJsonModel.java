@@ -162,16 +162,4 @@ public class InJsonModel implements Serializable {
 
         return 1 << count;
     }
-
-    public String getManufacturerSerialNumber() {
-        String serial = null;
-        try {
-            Class<?> c = Class.forName("android.os.SystemProperties");
-            Method get = c.getMethod("get", String.class, String.class);
-            serial = (String) get.invoke(c, "ril.serialnumber", "unknown");
-        } catch (Exception ignored) {
-        }
-        return serial;
-    }
-
 }
