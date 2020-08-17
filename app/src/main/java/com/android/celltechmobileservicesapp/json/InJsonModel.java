@@ -24,7 +24,6 @@ import java.text.DecimalFormat;
 
 public class InJsonModel implements Serializable {
     String model;
-    String imei;
     String action;
     Params params;
     String error;
@@ -33,9 +32,7 @@ public class InJsonModel implements Serializable {
     int status;
     String version;
     String memo;
-    String imei2;
     String baseband;
-    String serial;
 
     public String getAction() {
         return action;

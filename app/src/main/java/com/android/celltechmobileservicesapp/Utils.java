@@ -13,6 +13,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.android.celltechmobileservicesapp.Constants.keepMBytesFree;
 import static com.android.celltechmobileservicesapp.Constants.toBytes;

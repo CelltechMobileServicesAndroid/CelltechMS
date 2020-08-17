@@ -12,8 +12,9 @@ package com.android.celltechmobileservicesapp.json;
 
 import android.content.Context;
 import android.os.Build;
-import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.android.celltechmobileservicesapp.Constants;
 
 import org.json.JSONObject;
 
@@ -25,41 +26,12 @@ public class StartJsonModel extends InJsonModel implements Serializable {
 
     public StartJsonModel(Context mContext) {
         this.mContext = mContext;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.serial = Build.getSerial();
-        } else {
-            this.serial = Build.SERIAL;
-        }
-        Log.d(TAG, "StartJsonModel serial " + this.serial);
+        Log.d(TAG, "StartJsonModel serial " + Constants.SERIAL);
+        Log.d(TAG, "StartJsonModel imei " + Constants.IMEI);
 
         this.model = getDeviceName();
         Log.d(TAG, "StartJsonModel model " + this.model);
 
-//        //get serial for Samsung devices
-//        if (model.toLowerCase().contains("samsung")) {
-//            this.serial = getManufacturerSerialNumber();
-//        }
-//        Log.d(TAG, "StartJsonModel serial " + this.serial);
-
-        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        this.imei = telephonyManager.getDeviceId();
-        this.imei2 = "";
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            try {
-                if (telephonyManager.getPhoneCount() == 2) {
-                    Log.i(TAG, "Single 1 " + telephonyManager.getDeviceId(0));
-                    Log.i(TAG, "Single 2 " + telephonyManager.getDeviceId(1));
-                    this.imei = telephonyManager.getDeviceId(0);
-                    this.imei2 = telephonyManager.getDeviceId(1);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        Log.d(TAG, "StartJsonModel imei " + this.imei);
-        Log.d(TAG, "StartJsonModel imei2 " + this.imei2);
 
         this.status = 1;
 
@@ -77,9 +49,9 @@ public class StartJsonModel extends InJsonModel implements Serializable {
         String str = "";
         try {
             JSONObject dataToSend = new JSONObject();
-            dataToSend.put("imei", this.imei);
-            dataToSend.put("imei2", this.imei2);
-            dataToSend.put("serial", this.serial);
+            dataToSend.put("imei", Constants.IMEI);
+            dataToSend.put("imei2", Constants.IMEI);
+            dataToSend.put("serial", Constants.SERIAL);
             dataToSend.put("status", this.status);
             dataToSend.put("model", this.model);
             dataToSend.put("android_version", this.version);

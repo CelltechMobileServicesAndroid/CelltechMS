@@ -5,12 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.Nullable;
 import android.widget.ProgressBar;
+
 import com.crashlytics.android.Crashlytics;
 
 import java.util.Calendar;
 
+import androidx.annotation.Nullable;
 import io.fabric.sdk.android.Fabric;
 
 public class FirstLoadActivity extends Activity {
@@ -25,6 +26,24 @@ public class FirstLoadActivity extends Activity {
         Fabric.with(this, new Crashlytics());
 
         mContext = this;
+
+        Bundle extras = this.getIntent().getExtras();
+        if (extras != null) {
+            if (extras.containsKey("serial")) {
+                Constants.SERIAL = extras.getString("serial");
+                Utils.appendLogFile("Constants.SERIAL " + Constants.SERIAL);
+            } else {
+                Utils.appendLogFile("no serial received");
+            }
+            if (extras.containsKey("imei")) {
+                Constants.IMEI = extras.getString("imei");
+                Utils.appendLogFile("Constants.IMEI " + Constants.IMEI);
+            } else {
+                Utils.appendLogFile("no imei received");
+            }
+        } else {
+            Utils.appendLogFile("no extras received");
+        }
 
         setContentView(R.layout.firstload);
 

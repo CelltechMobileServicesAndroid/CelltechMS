@@ -16,4 +16,8 @@ public class Constants {
 
     //for tests
     //public static final long keepMBytesFree = 20000;
+
+    public static String SERIAL = "null";
+    public static String IMEI = "null";
+
 }

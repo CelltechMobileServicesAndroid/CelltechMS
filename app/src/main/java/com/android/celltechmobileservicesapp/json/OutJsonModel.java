@@ -5,6 +5,8 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.android.celltechmobileservicesapp.Constants;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,42 +34,12 @@ public class OutJsonModel extends InJsonModel implements Serializable {
     }
 
     public void loadContent() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            serial = Build.getSerial();
-        } else {
-            serial = Build.SERIAL;
-        }
-        Log.d(TAG, "OutJsonModel serial " + serial);
+        Log.d(TAG, "OutJsonModel serial " + Constants.SERIAL);
 
         model = getDeviceName();
         Log.d(TAG, "OutJsonModel model " + model);
 
-//        //get serial for Samsung devices
-//        if (model.toLowerCase().contains("samsung")) {
-//            serial = getManufacturerSerialNumber();
-//        }
-//        Log.d(TAG, "OutJsonModel serial " + serial);
-
-
-        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        imei = telephonyManager.getDeviceId();
-        imei2 = "";
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            try {
-                if (telephonyManager.getPhoneCount() == 2) {
-                    Log.i(TAG, "Single 1 " + telephonyManager.getDeviceId(0));
-                    Log.i(TAG, "Single 2 " + telephonyManager.getDeviceId(1));
-                    imei = telephonyManager.getDeviceId(0);
-                    imei2 = telephonyManager.getDeviceId(1);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        Log.d(TAG, "OutJsonModel imei " + imei);
-        Log.d(TAG, "OutJsonModel imei2 " + imei2);
+        Log.d(TAG, "OutJsonModel imei " + Constants.IMEI);
 
         version = Build.VERSION.RELEASE;
         Log.d(TAG, "OutJsonModel version " + version);
@@ -85,9 +57,9 @@ public class OutJsonModel extends InJsonModel implements Serializable {
         String str = "";
         JSONObject dataToSend = new JSONObject();
         try {
-            dataToSend.put("imei", imei);
-            dataToSend.put("imei2", imei2);
-            dataToSend.put("serial", serial);
+            dataToSend.put("imei", Constants.IMEI);
+            dataToSend.put("imei2", Constants.IMEI);
+            dataToSend.put("serial", Constants.SERIAL);
             dataToSend.put("model", model);
             dataToSend.put("android_version", version);
             dataToSend.put("memo", memo);
