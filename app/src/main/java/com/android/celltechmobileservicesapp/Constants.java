@@ -2,7 +2,7 @@ package com.android.celltechmobileservicesapp;
 
 public class Constants {
 
-    public static final long keepMBytesFree = 10;
+    public static final long keepMBytesFree = 10; //191000;
     public static final long toBytes = 1000000;
     public static int ddBS = 1000000; //4096;
 
