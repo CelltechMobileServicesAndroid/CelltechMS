@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity
 
         //Log.d("Start" , new StartJsonModel(mContext).createJson());
         //Log.d("Start" , new OutJsonModel(mContext,"data_wipe").createJson());
-
     }
 
     private void loadHome() {

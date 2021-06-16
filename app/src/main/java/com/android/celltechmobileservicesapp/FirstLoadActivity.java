@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
 
-import com.crashlytics.android.Crashlytics;
-
 import java.util.Calendar;
 
 import androidx.annotation.Nullable;
-import io.fabric.sdk.android.Fabric;
 
 public class FirstLoadActivity extends Activity {
     Context mContext;
@@ -23,7 +20,7 @@ public class FirstLoadActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
 
         mContext = this;
 

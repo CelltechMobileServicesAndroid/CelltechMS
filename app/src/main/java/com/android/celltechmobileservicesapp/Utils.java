@@ -1,6 +1,7 @@
 package com.android.celltechmobileservicesapp;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 
@@ -13,15 +14,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import static com.android.celltechmobileservicesapp.Constants.keepMBytesFree;
 import static com.android.celltechmobileservicesapp.Constants.toBytes;
 
 public class Utils {
-    //public static File logFile = new File("sdcard/log.file");
 
     public static String getActionNameByCode(Context mContext, String code) {
         int i = -1;
@@ -34,10 +31,17 @@ public class Utils {
     }
 
 
-    public static void appendLogFile(Context mContext,String text) {
+    public static void appendLogFile(Context mContext, String text) {
         try {
             //BufferedWriter for performance, true to set append to file flag
-            File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
+            File dir;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/wipapp/");
+            } else {
+                dir = new File(mContext.getExternalFilesDir(null) + "/");
+            }
+            dir.mkdirs();
+            File logFile = new File(dir + "/log.file");
             BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
             buf.append(text);
             buf.newLine();
@@ -66,7 +70,14 @@ public class Utils {
     public static String getLogFromFile(Context mContext) {
         String ret = "";
         FileInputStream fin = null;
-        File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
+        File dir;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/wipapp/");
+        } else {
+            dir = new File(mContext.getExternalFilesDir(null) + "/");
+        }
+        dir.mkdirs();
+        File logFile = new File(dir + "/log.file");
         try {
             fin = new FileInputStream(logFile);
             ret = convertStreamToString(fin);
@@ -80,7 +91,16 @@ public class Utils {
     }
 
     public static void clearFileContent(Context mContext) {
-        File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
+        //File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
+        File dir;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/wipapp/");
+        } else {
+            dir = new File(mContext.getExternalFilesDir(null) + "/");
+        }
+        dir.mkdirs();
+        File logFile = new File(dir + "/log.file");
+
         logFile.delete();
         try {
             logFile.createNewFile();
