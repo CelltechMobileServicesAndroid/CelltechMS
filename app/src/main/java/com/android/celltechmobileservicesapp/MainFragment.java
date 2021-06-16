@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -79,7 +80,7 @@ public class MainFragment extends Fragment {
 
     public void initializeCommunication() {
         clearMessageInLogsList();
-        showMessageInLogsList(Utils.getLogFromFile(), false);
+        showMessageInLogsList(Utils.getLogFromFile(getActivity()), false);
         //can't send message if USB cable not connected
         if (isUSBConnected(getActivity()) && (Constants.processStatus == 1 || Constants.processStatus == 3)) {
             mainTask = new Thread(new OpenSocketRunnable());
@@ -284,7 +285,7 @@ public class MainFragment extends Fragment {
                 }
             });
             if (saveinfile){ // && Constants.TestsSpaceDivider != 1) { //save just when testing
-                Utils.appendLogFile(message);
+                Utils.appendLogFile(getActivity(),message);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -335,7 +336,7 @@ public class MainFragment extends Fragment {
             case R.id.reload:
                 Constants.processStatus = 1;
                 initializeCommunication();
-                Utils.clearFileContent();
+                Utils.clearFileContent(getActivity());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -31,7 +31,7 @@ public class StartJsonModel extends InJsonModel implements Serializable {
 
         this.model = getDeviceName();
         Log.d(TAG, "StartJsonModel model " + this.model);
-
+ 
 
         this.status = 1;
 

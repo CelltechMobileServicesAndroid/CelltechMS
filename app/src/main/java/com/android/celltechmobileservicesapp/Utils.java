@@ -21,7 +21,7 @@ import static com.android.celltechmobileservicesapp.Constants.keepMBytesFree;
 import static com.android.celltechmobileservicesapp.Constants.toBytes;
 
 public class Utils {
-    public static File logFile = new File("sdcard/log.file");
+    //public static File logFile = new File("sdcard/log.file");
 
     public static String getActionNameByCode(Context mContext, String code) {
         int i = -1;
@@ -34,9 +34,10 @@ public class Utils {
     }
 
 
-    public static void appendLogFile(String text) {
+    public static void appendLogFile(Context mContext,String text) {
         try {
             //BufferedWriter for performance, true to set append to file flag
+            File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
             BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
             buf.append(text);
             buf.newLine();
@@ -62,9 +63,10 @@ public class Utils {
         return sb.toString();
     }
 
-    public static String getLogFromFile() {
+    public static String getLogFromFile(Context mContext) {
         String ret = "";
         FileInputStream fin = null;
+        File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
         try {
             fin = new FileInputStream(logFile);
             ret = convertStreamToString(fin);
@@ -77,7 +79,8 @@ public class Utils {
         return ret;
     }
 
-    public static void clearFileContent() {
+    public static void clearFileContent(Context mContext) {
+        File logFile = new File(mContext.getExternalFilesDir(null) + "/log.file");
         logFile.delete();
         try {
             logFile.createNewFile();

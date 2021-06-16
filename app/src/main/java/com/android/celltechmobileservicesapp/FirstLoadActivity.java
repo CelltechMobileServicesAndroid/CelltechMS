@@ -31,18 +31,18 @@ public class FirstLoadActivity extends Activity {
         if (extras != null) {
             if (extras.containsKey("serial")) {
                 Constants.SERIAL = extras.getString("serial");
-                Utils.appendLogFile("Constants.SERIAL " + Constants.SERIAL);
+                Utils.appendLogFile(this, "Constants.SERIAL " + Constants.SERIAL);
             } else {
-                Utils.appendLogFile("no serial received");
+                Utils.appendLogFile(this,"no serial received");
             }
             if (extras.containsKey("imei")) {
                 Constants.IMEI = extras.getString("imei");
-                Utils.appendLogFile("Constants.IMEI " + Constants.IMEI);
+                Utils.appendLogFile(this,"Constants.IMEI " + Constants.IMEI);
             } else {
-                Utils.appendLogFile("no imei received");
+                Utils.appendLogFile(this,"no imei received");
             }
         } else {
-            Utils.appendLogFile("no extras received");
+            Utils.appendLogFile(this,"no extras received");
         }
 
         setContentView(R.layout.firstload);
@@ -71,7 +71,7 @@ public class FirstLoadActivity extends Activity {
             }
         }).start();
 
-        Utils.clearFileContent();
-        Utils.appendLogFile(Calendar.getInstance().getTime().toString());
+        Utils.clearFileContent(this);
+        Utils.appendLogFile(this,Calendar.getInstance().getTime().toString());
     }
 }
